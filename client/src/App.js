@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [name, setName] = useState("");
+	const [greeting, setGreeting] = useState("");
+
+	async function sayHello() {
+		const response = await fetch(`http://localhost:8080/hello/${name}`, {
+			headers: {
+				"User-Agent": "navigtor.userAgent",
+			},
+		});
+		const data = await response.text();
+		setGreeting(data);
+	}
+
+	return (
+		<div className="App">
+			<h1>Micronaut service headers test</h1>
+			<input
+				value={name}
+				onChange={(e) => setName(e.target.value)}
+				placeholder="Enter your name or else!"
+				style={{
+					width: "300px",
+				}}
+			/>
+			<button onClick={sayHello}>Submit Name</button>
+			<p>{greeting}</p>
+		</div>
+	);
 }
 
 export default App;
