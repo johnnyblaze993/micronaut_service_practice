@@ -9,7 +9,6 @@ function App() {
 		const response = await fetch(`http://localhost:8080/hello/${name}`, {
 			headers: {
 				"User-Agent": "navigtor.userAgent",
-				"content-type": "application/json",
 			},
 		});
 		const data = await response.text();

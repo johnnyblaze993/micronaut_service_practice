@@ -1,4 +1,20 @@
 micronaut:
+  server:
+    cors:
+      enabled: true
+      allowedOrigins:
+        - '*'
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      exposedHeaders:
+        - Authorization
+      maxAge: 1800
   application:
     name: server
 netty:
