@@ -9,7 +9,11 @@ import io.micronaut.http.annotation.Header;
 public class helloWorldController {
 
     @Get("/{name}")
-    public String hello(String name, @Header(HttpHeaders.USER_AGENT) String userAgent) {
+    public String hello(String name, 
+    @Header(HttpHeaders.USER_AGENT) String userAgent,
+    @Header(HttpHeaders.SERVER) String server)
+
+     {
         return "Hello " + name + " your user agent is: " + userAgent;
     }
 
